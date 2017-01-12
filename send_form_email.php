@@ -62,8 +62,8 @@ error_reporting(-1);
 
 // Pear library includes
 // You should have the pear lib installed
-include_once('Mail.php');
-include_once('Mail/mime.php');
+//include_once('Mail.php');
+//include_once('Mail/mime.php');
 
 //Settings
 //$max_allowed_file_size = 20480; // size in KB
@@ -291,15 +291,12 @@ if ($_POST) {
 
     } else { //send plain email otherwise
 
-        $fl = "email.txt";
+        $fl = "submit.txt";
         $b = file_get_contents($fl);
-        $b++;
-        $fp = fopen($fl,"c+");
-        $fw = fputs($fp, $b);
-        fclose($fp);
+
 
         $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "From:" . $from_email . 'email_#00'.$b."\r\n";
+        $headers .= "From:" . $from_email . '#00'.$b."\r\n";
 //        $headers .= "Reply-To: " . $sender_email . "" . "\r\n";
 //        "Reply-To: ".$sender_email. "\n" .
 //        "X-Mailer: PHP/" . phpversion();
@@ -307,7 +304,7 @@ if ($_POST) {
         $headers .= "Content-Type: multipart/mixed; boundary = $boundary\r\n\r\n";
 
 
-        $mail_body = "Email: " . $sender_email . "\r\nMessage: " . $message;
+        $mail_body = "Email: " . $sender_email;
 
         //message text
         $body = "--$boundary\r\n";
