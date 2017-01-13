@@ -288,12 +288,11 @@ if ($_POST) {
                 $body .= $encoded_content;
             }
         }
-
     } else { //send plain email otherwise
 
         $fl = "submit.txt";
         $b = file_get_contents($fl);
-
+        $b = $a;
 
         $headers = "MIME-Version: 1.0\r\n";
         $headers .= "From:" . $from_email . '#00'.$b."\r\n";

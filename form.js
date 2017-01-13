@@ -51,11 +51,12 @@
             if (inputType.val() == '') {
                 inputType.addClass('error');
                 validFile.text('Please include file');
-            } else if (inputType.val() && mail.val().search(pattern) !== 0) {
-                window.location.replace('complete.html');
-            } else {
-                window.location.replace('success.html');
             }
+            // } else if (inputType.val() && mail.val().search(pattern) !== 0) {
+            //     window.location.replace('complete.html');
+            // } else {
+            //     window.location.replace('success.html');
+            // }
         });
 
 
@@ -68,7 +69,7 @@
         });
 
         skipToSend.click(function () {
-            window.location.replace('success.html');
+            window.location.replace('success-sec.html');
         });
 
         backToSend.click(function () {
@@ -96,7 +97,6 @@
 
                 messageToSend.addClass('error');
             } else {
-
                 messageToSend.removeClass('error').addClass('success');
             }
 
@@ -187,6 +187,13 @@
                     }
 
                     if (res.type == "done") {
+
+                        if (inputType.val() && mail.val().search(pattern) !== 0) {
+                            window.location.replace('complete.html');
+                        } else {
+                            window.location.replace('success.html');
+                        }
+
                         $("#contact_results").html('<div class="success">' + res.text + "</div>");
                     }
                 });
