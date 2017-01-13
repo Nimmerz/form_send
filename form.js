@@ -189,7 +189,7 @@
                     if (res.type == "done") {
 
                         if (inputType.val() && mail.val().search(pattern) !== 0) {
-                            window.location.replace('complete.html');
+                            window.location.replace('complete.html?counter=23');
                         } else {
                             window.location.replace('success.html');
                         }
@@ -204,10 +204,16 @@
 
         // When the user clicks on, open the popup
 
+
+
+
+
+
+
         formSec.submit(function (e) {
             e.preventDefault(); //prevent default action
             proceed = true;
-
+            var counter = helpers.parseUrlParam('counter', window.location.path);
             //simple input validation
             $($(this).find("input[data-required=true], textarea[data-required=true]")).each(function () {
                 if (!$.trim($(this).val())) { //if this field is empty
@@ -244,10 +250,19 @@
                 });
             }
         });
-
-
-
-
     });
 
 }());
+
+var helpers = {
+    parseUrlParam: function(name, url) {
+        if (!url) {
+            url = window.location.href;
+        }
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+        if (!results) {
+            return undefined;
+        }
+        return results[1] || undefined;
+    }
+}
